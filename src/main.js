@@ -12,22 +12,6 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false
 
-router.beforeEach((to,from,next)=>{
-  if(to.matched.some(res=>res.meta.requireAuth)){ //判断是否需要登录权限
-    if(localStorage.getItem('aid')){  //已登录
-      next()
-    }else{  //未登录
-      console.log(to);
-      next({
-        path:'/login',
-        query:{ redirect: to.fullPath }
-      })
-    }
-  }else{
-    next()
-  }
-})
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

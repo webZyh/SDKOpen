@@ -1,12 +1,12 @@
 <template>
   <div class="clearfix">
-    <el-menu :default-active="$route.path" active-text-color="#1890ff" mode="horizontal" class="nav">
-      <el-menu-item index="/home"><router-link to="/home" class="tab-item">首页</router-link></el-menu-item>
-      <el-menu-item  index="/downSdk"><router-link to="/downSdk" class="tab-item">SDK引用</router-link></el-menu-item >
-      <el-menu-item  index="/developDoc"><router-link to="/developDoc" class="tab-item">文档</router-link></el-menu-item >
-      <el-menu-item  index="/manageCenter"><router-link to="/manageCenter" class="tab-item">管理中心</router-link></el-menu-item >
-      <el-menu-item  index="/login"><router-link to="/login" class="tab-item">登录</router-link></el-menu-item >
-      <el-menu-item  index="/register"><router-link to="/register" class="tab-item">注册</router-link></el-menu-item >
+    <el-menu :default-active="$route.path" active-text-color="#1890ff" mode="horizontal" :unique-opened="true" :router="true" class="nav">
+      <el-menu-item index="/home">首页</el-menu-item>
+      <el-menu-item index="/downSdk">SDK引用</el-menu-item >
+      <el-menu-item index="/developDoc">文档</el-menu-item >
+      <el-menu-item index="/manageCenter">管理中心</el-menu-item >
+      <el-menu-item index="/login">登录</el-menu-item >
+      <el-menu-item index="/register">注册</el-menu-item >
     </el-menu>
   </div>
 </template>
