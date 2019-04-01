@@ -17,9 +17,9 @@
         <el-form-item>
           <el-button type="primary" size="medium" class="login-btn" @click="login()">登录</el-button>
         </el-form-item>
-        <div class="register-now">
-          或 <span @click="toRegister">现在注册</span>
-        </div>
+        <el-row class="register-now">
+          或 <a @click.prevent="toRegister" style="cursor: pointer">现在注册</a>
+        </el-row>
       </el-form>
     </div>
 </template>
