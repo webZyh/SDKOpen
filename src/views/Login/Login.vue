@@ -54,7 +54,21 @@ export default{
   },
   methods:{
     login(){
-      localStorage.setItem('aid','111');
+      //localStorage.setItem('aid','111');
+      this.$axios({
+        url:'',
+        method:'',
+        data:{
+          //post
+        },
+        params:{
+          //get
+        }
+      }).then((res)=>{
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err);
+      })
     },
     toRegister(){
       this.$router.push({

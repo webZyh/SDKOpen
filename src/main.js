@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
+
+import axios from 'axios'
+Vue.prototype.$axios = axios
 
 import 'font-awesome/css/font-awesome.min.css'
 import ElementUI from 'element-ui'
@@ -16,5 +20,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
