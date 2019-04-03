@@ -29,7 +29,14 @@ const router =  new Router({
       meta: {
         requireAuth: true
       },
-      component: resolve => require(['views/ManageCenter/ManageCenter.vue'],resolve)
+      component: resolve => require(['views/ManageCenter/ManageCenter.vue'],resolve),
+      children:[
+        {
+          path:'/',
+          name:'',
+          component: resolve => require(['views/ManageCenter/ApplicationManage.vue'],resolve)
+        }
+      ]
     }
   ],
   linkActiveClass: 'active'
