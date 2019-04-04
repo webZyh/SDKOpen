@@ -1,0 +1,58 @@
+1、解决使用路由拦截时，el-menu的active不跳转到需要跳转的菜单处
+
+2、vuex
+  component -> actions
+  方式1/  mounted(){
+        this.$store.dispatch('method')
+      }
+  方式2/  import {mapActions} from 'vuex'
+      methods:{
+        ...mapActions(['method'])
+      }
+      mounted(){
+        this.method()
+      }
+
+    actions ->  mutations
+    method({commit , state}){
+      ....
+      commit(Method,{参数})   //这一步也可以直接从component到mutations
+    }
+
+    mutations
+      Method(state,{参数}){
+        //操作state
+      }
+
+    获取state方式
+     1、import {mapState} from 'vuex'
+
+        computed:{
+          ...mapState(['stateName']),
+
+          ...mapState({
+                "stateName": state => state.子模块名.stateName    //有modules
+              })
+        }
+        stateName可以直接使用
+
+     2、computed: {
+          stateName () {
+              return this.$store.state.stateName
+
+              return this.$store.state.子模块名.stateName    //有modules
+          }
+        }
+
+     获取getters方法
+
+     1、import {mapGetters} from 'vuex';
+
+        computed:{
+          ...mapGetters(['gettersName'])
+        }
+        gettersName
+
+        gettersName () {
+            return this.$store.getters.gettersName
+        }

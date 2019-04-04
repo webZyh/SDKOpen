@@ -54,21 +54,21 @@ export default{
   },
   methods:{
     login(){
-      //localStorage.setItem('aid','111');
-      this.$axios({
-        url:'',
-        method:'',
-        data:{
-          //post
-        },
-        params:{
-          //get
-        }
-      }).then((res)=>{
-        console.log(res);
-      }).catch((err)=>{
-        console.log(err);
-      })
+      localStorage.setItem('aid','111');
+//      this.$axios({
+//        url:'',
+//        method:'',
+//        data:{
+//          //post
+//        },
+//        params:{
+//          //get
+//        }
+//      }).then((res)=>{
+//        console.log(res);
+//      }).catch((err)=>{
+//        console.log(err);
+//      })
     },
     toRegister(){
       this.$router.push({
@@ -97,7 +97,7 @@ export default{
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 .login-wrap
   background #f0f2f5
-  height 655px
+  height 640px
   text-align center
   padding-top 50px
   .title

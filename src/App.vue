@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderTab></HeaderTab>
+    <Header></Header>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-  import HeaderTab from './components/HeaderTab.vue'
-  import Footer from './components/Footer.vue'
+  import Header from './layout/Header.vue'
+  import Footer from './layout/Footer.vue'
   export default {
     name: 'App',
     components:{
-      HeaderTab,
+      Header,
       Footer
     }
   }

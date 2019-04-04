@@ -11,12 +11,20 @@ const router =  new Router({
     {
       path: '/login',
       name:'login',
-      component: resolve => require(['views/Login/Login.vue'],resolve)
+      component: resolve => require(['views/Login/Login.vue'],resolve),
+      meta:{
+        showTab: true,
+        showLogin: true
+      }
     },
     {
       path: '/register',
       name:'register',
-      component: resolve => require(['views/Register/Register.vue'],resolve)
+      component: resolve => require(['views/Register/Register.vue'],resolve),
+      meta:{
+        showTab: true,
+        showRegister: true
+      }
     },
     {
       path: '/forgetPsd',
@@ -34,7 +42,27 @@ const router =  new Router({
         {
           path:'/',
           name:'',
-          component: resolve => require(['views/ManageCenter/ApplicationManage.vue'],resolve)
+          component: resolve => require(['views/ManageCenter/Application/ApplicationManage.vue'],resolve)
+        },
+        {
+          path:'/product1',
+          name:'',
+          component: resolve => require(['views/ManageCenter/Product/product1.vue'],resolve)
+        },
+        {
+          path:'/product2',
+          name:'',
+          component: resolve => require(['views/ManageCenter/Product/product2.vue'],resolve)
+        },
+        {
+          path:'/dataAnalysis1',
+          name:'',
+          component: resolve => require(['views/ManageCenter/DataAnalysis/DataAnalysis1.vue'],resolve)
+        },
+        {
+          path:'/dataAnalysis2',
+          name:'',
+          component: resolve => require(['views/ManageCenter/DataAnalysis/DataAnalysis2.vue'],resolve)
         }
       ]
     }

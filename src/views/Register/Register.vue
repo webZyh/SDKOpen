@@ -82,7 +82,7 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .register-wrap
     background #f0f2f5
-    height 655px
+    height 640px
     text-align center
     padding-top 50px
     .title

@@ -1,6 +1,6 @@
  const common = {
   state:{
-    test:'demo'
+    isCollapse: false
   },
   getters:{
 
@@ -9,7 +9,9 @@
 
   },
   mutations:{
-
+    toggleSiderBar(state) {
+      state.isCollapse = !state.isCollapse
+    }
   }
 }
 
