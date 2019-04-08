@@ -23,16 +23,16 @@
               <i class="iconfont icon-chanpinkaifa"></i>
               <span>产品开发</span>
             </template>
-            <el-menu-item index="/product1">产品定义</el-menu-item>
-            <el-menu-item index="/product2">订单管理</el-menu-item>
+            <el-menu-item index="/productDefine">产品定义</el-menu-item>
+            <el-menu-item index="/orderManage">订单管理</el-menu-item>
           </el-submenu>
           <el-submenu index="/dataAnalysis">
             <template slot="title">
               <i class="iconfont icon-shujufenxi"></i>
               <span>数据分析</span>
             </template>
-            <el-menu-item index="/dataAnalysis1">基本分析</el-menu-item>
-            <el-menu-item index="/dataAnalysis2">产品分析</el-menu-item>
+            <el-menu-item index="/basicAnalysis">基本分析</el-menu-item>
+            <el-menu-item index="/productAnalysis">产品分析</el-menu-item>
           </el-submenu>
           <el-submenu index="/verify">
             <template slot="title">

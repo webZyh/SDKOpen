@@ -1,8 +1,6 @@
 <template>
-    <div class="clearfix">
-      <el-card>
-        我是应用管理
-      </el-card>
+    <div class="">
+      产品定义页（admin）
     </div>
 </template>
 <script>

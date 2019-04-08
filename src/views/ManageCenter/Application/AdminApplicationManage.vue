@@ -1,8 +1,6 @@
 <template>
-    <div class="clearfix">
-      <el-card>
-        我是应用管理
-      </el-card>
+    <div class="">
+      应用管理（超级管理员）
     </div>
 </template>
 <script>

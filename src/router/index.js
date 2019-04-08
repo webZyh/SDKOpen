@@ -29,7 +29,10 @@ const router =  new Router({
     {
       path: '/forgetPsd',
       name:'forgetPsd',
-      component: resolve => require(['views/ForgetPassword/ForgetPassword.vue'],resolve)
+      component: resolve => require(['views/ForgetPassword/ForgetPassword.vue'],resolve),
+      meta:{
+        showTab: true
+      }
     },
     {
       path: '/manageCenter',
@@ -45,24 +48,24 @@ const router =  new Router({
           component: resolve => require(['views/ManageCenter/Application/ApplicationManage.vue'],resolve)
         },
         {
-          path:'/product1',
+          path:'/productDefine',
           name:'',
-          component: resolve => require(['views/ManageCenter/Product/product1.vue'],resolve)
+          component: resolve => require(['views/ManageCenter/Product/ProductDefine.vue'],resolve)
         },
         {
-          path:'/product2',
+          path:'/orderManage',
           name:'',
-          component: resolve => require(['views/ManageCenter/Product/product2.vue'],resolve)
+          component: resolve => require(['views/ManageCenter/Product/OrderManage.vue'],resolve)
         },
         {
-          path:'/dataAnalysis1',
+          path:'/basicAnalysis',
           name:'',
-          component: resolve => require(['views/ManageCenter/DataAnalysis/DataAnalysis1.vue'],resolve)
+          component: resolve => require(['views/ManageCenter/DataAnalysis/BasicAnalysis.vue'],resolve)
         },
         {
-          path:'/dataAnalysis2',
+          path:'/productAnalysis',
           name:'',
-          component: resolve => require(['views/ManageCenter/DataAnalysis/DataAnalysis2.vue'],resolve)
+          component: resolve => require(['views/ManageCenter/DataAnalysis/ProductAnalysis.vue'],resolve)
         }
       ]
     }
