@@ -2,20 +2,20 @@
     <div class="login-wrap">
       <div class="title">登录</div>
       <el-form class="input-box" ref="form" :model="form" :rules="rules" label-width="0px">
-        <el-form-item prop="name">
-          <el-input placeholder="邮箱" prefix-icon="el-icon-mobile-phone" size="small" v-model="form.name"></el-input>
+        <el-form-item prop="username">
+          <el-input placeholder="用户名" prefix-icon="fa fa-user-o" size="small" v-model="form.username"></el-input>
         </el-form-item >
         <el-form-item prop="password">
-          <el-input placeholder="密码" prefix-icon="el-icon-mobile-phone" size="small" v-model="form.password"></el-input>
+          <el-input placeholder="密码" prefix-icon="fa fa-key" size="small" v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item class="forgetPsd">
-          <el-row class="remember"  type="flex" justify="space-between">
-            <el-checkbox v-model="isChecked">记住我</el-checkbox>
+          <el-row class="remember"  type="flex" justify="end">
+            <!--<el-checkbox></el-checkbox>-->
             <a @click.prevent="toForgetPsd">忘记密码</a>
           </el-row>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="medium" class="login-btn" @click="login()">登录</el-button>
+          <el-button type="primary" size="medium" class="login-btn" @click="login('form')">登录</el-button>
         </el-form-item>
         <el-row class="register-now">
           或 <a @click.prevent="toRegister" style="cursor: pointer">现在注册</a>
@@ -29,13 +29,12 @@
 export default{
   data(){
     return{
-      isChecked: false,
       form:{
-        name:'',
+        username:'',
         password:''
       },
       rules:{
-        name:[
+        username:[
           {
             required: true,
             message:'请输入邮箱',
@@ -53,8 +52,49 @@ export default{
     }
   },
   methods:{
-    login(){
-      localStorage.setItem('aid','111');
+    login(form){
+      let {username,password} = this.form;
+      let params = this.$qs.stringify({
+        username,
+        password
+      })
+      this.$refs[form].validate((valid) => {
+        if(valid){
+          this.$axios.post('api/login',params).then((res)=>{
+            let rs = res.data;
+            if(rs.code == 1){
+              this.$message({
+                showClose: true,
+                message: `${rs.msg}`,
+                type: 'error'
+              })
+            }else if(rs.code == 0){
+              this.$message({
+                message:`${rs.msg}`,
+                type:'success',
+              });
+              //清空输入框
+              this.form.username = '';
+              this.form.password = '';
+              
+              //判断是否需要跳回到路由拦截的页面
+              let oldPath = this.$route.query.redirect;
+              if(oldPath){
+                this.$router.push({
+                  path:`${oldPath}`
+                })
+              }else{
+                this.$router.push({
+                  path:'/home'
+                })
+              }
+            }
+          }).catch((err)=>{
+
+          })
+        }
+      })
+      // localStorage.setItem('aid','111');
 //      this.$axios({
 //        url:'',
 //        method:'',

@@ -75,8 +75,10 @@ const router =  new Router({
 
 
 router.beforeEach((to,from,next)=>{
+  console.log(to);  //去哪个页面
   if(to.matched.some(res=>res.meta.requireAuth)){ //判断是否需要登录权限
-    if(localStorage.getItem('aid')){  //已登录
+
+    if(document.cookie.indexOf('user_id')!=-1){  //已登录
       next()
     }else{  //未登录
       console.log(to);
@@ -85,7 +87,7 @@ router.beforeEach((to,from,next)=>{
         query:{ redirect: to.fullPath }
       })
     }
-  }else{
+  }else{    //不需要登录权限
     next()
   }
 })

@@ -1,4 +1,4 @@
-1、解决使用路由拦截时，el-menu的active不跳转到需要跳转的菜单处
+1、解决使用路由拦截时，el-menu的active不跳转到需要跳转的菜单处，加上:router="true"
 
 2、vuex
   component -> actions
@@ -56,3 +56,52 @@
         gettersName () {
             return this.$store.getters.gettersName
         }
+
+3、axios
+------------------------------------
+axios.get('接口地址',{
+	params:{
+		传参
+	},
+	headers:{
+		携带请求头信息
+		token:'aaa'
+	}
+}).then(res=>{
+	成功
+}).catch((err)=>{
+	失败
+})
+------------------------------------
+axios.post('地址',{参数},{headers:{token:'tom'}}).then(res=>{
+
+}).catch(err=>{
+
+})
+------------------------------------
+axios({
+	url:'',
+	method:'',
+	data:{
+		post传参
+	},
+	params:{
+		get传参
+	},
+	headers:{
+
+	}
+}).then(res=>{
+
+})        
+
+4、
+data参数是一个JSON.stringify()处理后的字符串，而不是一个JSON对象
+查了半天，Request Payload这种数据一般用来上传文件
+Axios向后端提交数据容易接收不到原因是传参方式是request payload,参数格式是json，而并非用的是form传参，所以在后台用接收form数据的方式接收参数就接收不到了。post表单请求提交时，使用的Content-Type是application/x-www-form-urlencoded，而使用原生AJAX的POST请求如果不指定请求头RequestHeader，默认使用的Content-Type是text/plain;charset=UTF-8。
+
+解决办法：使用qs处理post数据
+npm install qs --save
+import qs from 'qs'
+...
+let postData=this.$qs.stringify(datas)
