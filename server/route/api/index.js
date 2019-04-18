@@ -13,6 +13,7 @@ module.exports = function () {
     let router = express.Router();
     //注册
     router.post('/register', (req, res) => {
+        console.log(req.body);
         let {username, password} = req.body;
         console.log(username, password);
         //检查用户名是否已注册
@@ -59,12 +60,13 @@ module.exports = function () {
                     })
                 } else {
                     //设置cookie
-                    res.cookie("userId", data[0].user_Id, {
+                    res.cookie("user_id", data[0].user_id, {
                         path: '/',
-                        maxAge: 1000 * 60 * 60
+                        maxAge: 1000 * 60 * 60,     //一个小时过期
+                        signed:true     //cookie加签名
                     })
                     //设置session
-                    req.session['userId'] = data[0].user_Id;
+                    // req.session['userId'] = data[0].user_id;
                     res.json({
                         code: 0,
                         msg: '登录成功',
@@ -78,7 +80,7 @@ module.exports = function () {
     });
     //退出
     router.post('/logout', (req, res) => {
-        res.cookie('userId', '', {
+        res.cookie('user_id', '', {
             path: '/',
             maxAge: -1
         });

@@ -76,7 +76,7 @@ export default{
               //清空输入框
               this.form.username = '';
               this.form.password = '';
-              
+
               //判断是否需要跳回到路由拦截的页面
               let oldPath = this.$route.query.redirect;
               if(oldPath){

@@ -12,7 +12,7 @@ server.listen(3000, () => {
 });
 
 //处理cookie、session
-server.use(cookieParser(''));
+server.use(cookieParser('ddfdfdsdfafasfasfas'));    //cookie加签名
 (function () {
     let keys = [];
     for (let i = 0; i < 100000; i++) {
@@ -26,7 +26,7 @@ server.use(cookieParser(''));
 })();
 //处理数据get/post/files
 server.use(bodyParser.urlencoded({
-    extended: false,
+    extended: true,
     limit: 1000
 }))
 
