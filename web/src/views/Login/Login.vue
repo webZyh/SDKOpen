@@ -62,13 +62,24 @@ export default{
         if(valid){
           this.$axios.post('api/login',params).then((res)=>{
             let rs = res.data;
-            if(rs.code == 1){
+            if(rs.code == 2){
+              this.$message({
+                showClose: true,
+                message: `${rs.msg}`,
+                type: 'error'
+              })
+            }else if(rs.code == 1){
               this.$message({
                 showClose: true,
                 message: `${rs.msg}`,
                 type: 'error'
               })
             }else if(rs.code == 0){
+              //将用户信息存入vuex中,并存入localStorage中
+              let userInfo = rs.data;
+              this.$store.dispatch('userInfo',userInfo.username);
+              localStorage.setItem('userInfo', userInfo.username);
+
               this.$message({
                 message:`${rs.msg}`,
                 type:'success',

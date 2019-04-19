@@ -11,8 +11,17 @@
 <script>
   import Header from './layout/Header.vue'
   import Footer from './layout/Footer.vue'
+
+  import {mapActions} from 'vuex'
   export default {
     name: 'App',
+    mounted(){
+//      this.getUserInfo();
+      //this.$store.dispatch('getUserInfo');
+    },
+    methods:{
+//      ...mapActions(['getUserInfo'])
+    },
     components:{
       Header,
       Footer

@@ -1,0 +1,19 @@
+项目遇到的难点问题
+1、刷新页面，vuex中的状态不保存
+
+  方法一：新增一个检查用户登录的接口，从cookie中获取到用户信息并返回，页面初始化时自动调用，获取到用户信息再次保存到vuex中
+  方法二：将state里的数据保存一份到本地存储(localStorage、sessionStorage、cookie）中
+    const store = new Vuex.Store({
+      // 定义状态
+      state: {
+        myInfo: JSON.parse(localStorage.getItem("myInfo")) || {}, //这里使用JSON.parse是因为我localStorage中保存的是一个对象字符串
+      },
+      //修改状态
+      mutations:{
+        setInfo(state,info){
+          localStorage.setItem('myInfo', JSON.stringify(info)); //将传递的数据先保存到localStorage中
+          state.myInfo = info;// 之后才是修改state中的状态
+        },
+      },
+    })
+    export default store

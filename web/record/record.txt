@@ -1,9 +1,18 @@
+项目进度
+> web端框架搭建，路由搭建
+> server端框架搭建
+> 数据库连接
+> 注册接口，功能
+> 登录接口，功能，vuex管理登录状态，
+> 退出样式、接口、功能，登录时loading状态
+> 首页轮播图，swiper
+-----------------------------------------------------------------------------------
 1、解决使用路由拦截时，el-menu的active不跳转到需要跳转的菜单处，加上:router="true"
 
 2、vuex
   component -> actions
   方式1/  mounted(){
-        this.$store.dispatch('method')
+        this.$store.dispatch('method',参数)
       }
   方式2/  import {mapActions} from 'vuex'
       methods:{
@@ -34,7 +43,7 @@
                 "stateName": state => state.子模块名.stateName    //有modules
               })
         }
-        stateName可以直接使用
+        //stateName可以直接使用
 
      2、computed: {
           stateName () {
@@ -93,7 +102,7 @@ axios({
 	}
 }).then(res=>{
 
-})        
+})
 
 4、
 data参数是一个JSON.stringify()处理后的字符串，而不是一个JSON对象
