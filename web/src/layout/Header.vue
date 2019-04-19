@@ -17,7 +17,7 @@
           <el-dropdown class="welcome-container" trigger="click" v-else>
             <div class="welcome-wrap">
               <div class="welcome">您好，{{username}}！</div>
-              <i class="el-icon-caret-bottom" />
+              <i class="el-icon-caret-bottom"/>
             </div>
             <el-dropdown-menu slot="dropdown">
               <router-link to="/home">
@@ -29,8 +29,12 @@
               <router-link to="/manageCenter">
                 <el-dropdown-item>管理中心</el-dropdown-item>
               </router-link>
-              <el-dropdown-item>
-                <span @click="logout">退出登录</span>
+              <el-dropdown-item divided>
+                <span @click="logout"
+                  element-loading-spinner="el-icon-loading"
+                  element-loading-background="rgba(0, 0, 0, 0.7)"
+                  v-loading.fullscreen.lock="fullscreenLoading"
+                >退出登录</span>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -57,7 +61,9 @@
 
   export default {
     data() {
-      return {}
+      return {
+        fullscreenLoading:false
+      }
     },
     computed: {
       /*username(){
@@ -68,16 +74,20 @@
       }),
     },
     methods: {
-      logout(){
-        this.$axios.post('api/logout').then((res)=>{
+      logout() {
+        this.fullscreenLoading = true;
+        this.$axios.post('api/logout').then((res) => {
           let rs = res.data;
-          if(rs.code == 0){
+          if (rs.code == 0) {
+            this.fullscreenLoading = false;
             //清空localStorage
             localStorage.removeItem('userInfo');
+            //清空vuex中的username，使header组件刷新
+            this.$store.commit('user_info','');
             this.$router.push({
-              path:'/login'
+              path: '/login'
             })
-            window.location.reload();   //刷新页面
+            //window.location.reload();   //刷新页面
           }
         })
       }

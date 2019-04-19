@@ -15,7 +15,17 @@
           </el-row>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="medium" class="login-btn" @click="login('form')">登录</el-button>
+          <el-button
+            type="primary"
+            size="medium"
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(0, 0, 0, 0.7)"
+            v-loading.fullscreen.lock="fullscreenLoading"
+            class="login-btn"
+            @click="login('form')"
+          >
+            登录
+          </el-button>
         </el-form-item>
         <el-row class="register-now">
           或 <a @click.prevent="toRegister" style="cursor: pointer">现在注册</a>
@@ -29,6 +39,7 @@
 export default{
   data(){
     return{
+      fullscreenLoading:false,
       form:{
         username:'',
         password:''
@@ -37,7 +48,7 @@ export default{
         username:[
           {
             required: true,
-            message:'请输入邮箱',
+            message:'请输入用户名',
             trigger:'blur'
           }
         ],
@@ -60,7 +71,13 @@ export default{
       })
       this.$refs[form].validate((valid) => {
         if(valid){
+          //显示加载中样式
+          this.fullscreenLoading = true;
+
           this.$axios.post('api/login',params).then((res)=>{
+            //关闭加载中样式
+            this.fullscreenLoading = false;
+
             let rs = res.data;
             if(rs.code == 2){
               this.$message({
@@ -75,8 +92,8 @@ export default{
                 type: 'error'
               })
             }else if(rs.code == 0){
-              //将用户信息存入vuex中,并存入localStorage中
               let userInfo = rs.data;
+              //将用户信息存入vuex中,并存入localStorage中
               this.$store.dispatch('userInfo',userInfo.username);
               localStorage.setItem('userInfo', userInfo.username);
 

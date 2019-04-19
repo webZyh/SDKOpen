@@ -16,11 +16,11 @@
   export default {
     name: 'App',
     mounted(){
-//      this.getUserInfo();
+      //this.getUserInfo();
       //this.$store.dispatch('getUserInfo');
     },
     methods:{
-//      ...mapActions(['getUserInfo'])
+      //...mapActions(['getUserInfo'])
     },
     components:{
       Header,

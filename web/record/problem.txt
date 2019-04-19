@@ -17,3 +17,41 @@
       },
     })
     export default store
+
+2、点击退出登录，页面head组件不会刷新，导致还是显示用户名
+  解决方法：
+  this.$store.commit('user_info','');   //清空vuex中的username，使header组件刷新，不再显示用户名
+
+3、组件进行某操作后（类似删除表格中的一条数据后，显示删除后的内容）自动刷新的方法：
+  provide/inject组合方式
+
+  App.vue
+  <router-view v-if="isRouterAlive"></router-view>
+  provide(){
+    return{
+      reload: this.reload
+    }
+  },
+  data(){
+    return{
+      isRouterAlive: true
+    }
+  },
+  methods:{
+    reload(){
+      this.isRouterAlive = false;
+      this.$nextTick(()=>{
+        this.isRouterAlive = true;
+      })
+    }
+  }
+
+  需要操作的组件
+  export default {
+    inject: ['reload'],   //注入依赖
+    data() {
+      return {}
+    },
+  }
+  在组件需要刷新的地方调用this.reload()即可
+
