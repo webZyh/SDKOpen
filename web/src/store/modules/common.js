@@ -1,9 +1,11 @@
 import axios from 'axios'
-
+import libs from '../../../libs'
 const common = {
   state:{
-    username: localStorage.getItem("userInfo") || '',
+    username: libs.getLocalStorage("userInfo") || '',
+    //username: '',
     isCollapse: false,
+    bannerImgs: [],
   },
   getters:{
 
@@ -22,6 +24,17 @@ const common = {
           commit('user_info',{username})
         }
       })
+    },
+
+    //获取banner数据
+    getBannerData({commit}){
+      axios.get('api/home/banner').then((res)=>{
+        let rs = res.data;
+        if (rs.code == 0){
+          const bannerImgs = rs.data;
+          commit('bannerData',{bannerImgs})
+        }
+      })
     }
   },
   mutations:{
@@ -31,6 +44,10 @@ const common = {
     },
     toggleSiderBar(state) {
       state.isCollapse = !state.isCollapse
+    },
+    //banner数据
+    bannerData(state,{bannerImgs}){
+      state.bannerImgs = bannerImgs;
     }
   }
 }

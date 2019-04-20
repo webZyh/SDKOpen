@@ -55,3 +55,61 @@
   }
   在组件需要刷新的地方调用this.reload()即可
 
+4、前端拿到数据库中的图片路径，但是图片不显示，也就是访问不到后台的静态图片
+
+  加上前缀，服务器的访问路径'http://localhost:3000/'，必须要加http
+
+5、何时初始化swiper
+  使用watch监听数据，数组中有数据了，异步更新界面
+  this.$nextTick(fn):界面更新完就立即创建Swiper对象
+   bannerImgs(value){
+      this.$nextTick(()=>{
+        new Swiper('.swiper-container', {
+          loop: true, // 循环模式选项
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,    //操作后是否停止autoplay
+          },
+          pagination: {
+            el: '.swiper-pagination',
+          },
+        })
+      })
+    }
+
+6、vue项目设置localStorage过期时间
+> 1、存储localStorage的值为一个对象，里面包含值value和创建的时间curTime
+localStorage.setItem('userInfo', JSON.stringify({value:userInfo.username,time:curTime}));
+> 2、封装两个方法：
+  方法一：检查localStorage是否过期，过期的话就清除掉localStorage
+  checkLocalStorage: function(key,newTime,expDate) {
+      let data = localStorage.getItem(key);
+      if(!data){
+        return false
+      }
+      let dataObj = JSON.parse(data);
+      if (newTime - dataObj.time < expDate) {
+        //未过期，返回值
+        return dataObj.value;
+      }else{
+        localStorage.removeItem(key);
+      }
+    },
+  方法二：方便从localStorage对象中拿到value值
+  getLocalStorage:function (key) {
+    let data = localStorage.getItem(key);
+    let dataObj = JSON.parse(data); //返回dataObj，使用dataObj.value就会报错,因为dataObj不存在时，没有value，就会报错，做如下判断即可
+    if (dataObj){                   //你为什么要这样搞我！！！！！！！！！！
+      return dataObj.value;
+    }else{
+      return false;
+    }
+  }
+> 3、在app.vue里初始化一个方法this.initLocalStorage()
+    initLocalStorage()方法的作用是，每次刷新页面时检查localStorag是否过期
+
+> 4、在vuex的state中这样取值：
+    优先取localStorage中的值
+    username: libs.getLocalStorage("userInfo") || '',
+
+> 5、不用localStorage存储用户数据，使用一个后台接口，后台可以设置用户数据过期的时间

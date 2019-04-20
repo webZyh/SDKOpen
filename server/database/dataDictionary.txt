@@ -1,0 +1,10 @@
+数据字典
+1、user(user_table)
+    user_id     用户id    int(5)
+    username    用户名    varchar(32)
+    password    密码      varchar(32)
+
+2、banner(banner_table)
+	id      id          int(5)
+	desc    图片描述    varchar(32)
+	src		图片地址	varchar(64)

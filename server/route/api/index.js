@@ -11,6 +11,10 @@ const db = mysql.createPool({
 //console.log(db);
 module.exports = function () {
     let router = express.Router();
+
+    //首页数据路由
+    router.use('/home',require('./home')());
+
     //注册
     router.post('/register', (req, res) => {
         console.log(req.body);

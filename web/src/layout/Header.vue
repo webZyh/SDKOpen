@@ -84,6 +84,7 @@
             localStorage.removeItem('userInfo');
             //清空vuex中的username，使header组件刷新
             this.$store.commit('user_info','');
+
             this.$router.push({
               path: '/login'
             })
