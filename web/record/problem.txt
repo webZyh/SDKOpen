@@ -113,3 +113,5 @@ localStorage.setItem('userInfo', JSON.stringify({value:userInfo.username,time:cu
     username: libs.getLocalStorage("userInfo") || '',
 
 > 5、不用localStorage存储用户数据，使用一个后台接口，后台可以设置用户数据过期的时间
+
+7、给el-tree添加路由

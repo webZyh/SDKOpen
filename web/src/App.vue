@@ -31,8 +31,8 @@
         console.log(newTime);
         libs.checkLocalStorage('userInfo',newTime,1000*60*60);
 
-        let obj = libs.getLocalStorage("userInfo")
-        console.log(obj);
+        //let obj = libs.getLocalStorage("userInfo")
+        //console.log(obj);
       }
     },
     components:{

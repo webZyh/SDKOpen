@@ -13,8 +13,8 @@ const router =  new Router({
       name:'login',
       component: resolve => require(['views/Login/Login.vue'],resolve),
       meta:{
-        showTab: true,
-        showLogin: true
+        hideTab: true,
+        hideLogin: true
       }
     },
     {
@@ -22,8 +22,8 @@ const router =  new Router({
       name:'register',
       component: resolve => require(['views/Register/Register.vue'],resolve),
       meta:{
-        showTab: true,
-        showRegister: true
+        hideTab: true,
+        hideRegister: true
       }
     },
     {
@@ -31,8 +31,40 @@ const router =  new Router({
       name:'forgetPsd',
       component: resolve => require(['views/ForgetPassword/ForgetPassword.vue'],resolve),
       meta:{
-        showTab: true
+        hideTab: true
       }
+    },
+    {
+      path: '/developDoc',
+      name:'developDoc',
+      component: resolve => require(['views/DevelopDoc/DevelopDoc.vue'],resolve),
+      children:[
+        {
+          path:'/',
+          name:'',
+          component: resolve => require(['views/DevelopDoc/Authentication/Authentication.vue'],resolve)
+        },
+        {
+          path:'/developDoc/fastStart',
+          name:'',
+          component: resolve => require(['views/DevelopDoc/Android/FastStart.vue'],resolve)
+        },
+        {
+          path:'/developDoc/doc',
+          name:'',
+          component: resolve => require(['views/DevelopDoc/Android/Doc.vue'],resolve)
+        },
+        {
+          path:'/developDoc/ifastStart',
+          name:'',
+          component: resolve => require(['views/DevelopDoc/IOS/FastStart.vue'],resolve)
+        },
+        {
+          path:'/developDoc/idoc',
+          name:'',
+          component: resolve => require(['views/DevelopDoc/IOS/Doc.vue'],resolve)
+        },
+      ]
     },
     {
       path: '/manageCenter',

@@ -11,8 +11,8 @@
       <el-col :span="12" class="right-wrap">
         <el-row type="flex" justify="end" class="login-group">
           <div v-if="!username">
-            <router-link to="/login" class="login" v-show="!$route.meta.showLogin">登录</router-link>
-            <router-link to="/register" class="register" v-show="!$route.meta.showRegister">注册</router-link>
+            <router-link to="/login" class="login" v-show="!$route.meta.hideLogin">登录</router-link>
+            <router-link to="/register" class="register" v-show="!$route.meta.hideRegister">注册</router-link>
           </div>
           <el-dropdown class="welcome-container" trigger="click" v-else>
             <div class="welcome-wrap">
@@ -40,7 +40,7 @@
           </el-dropdown>
 
         </el-row>
-        <el-row type="flex" justify="end" v-show="!$route.meta.showTab">
+        <el-row type="flex" justify="end" v-show="!$route.meta.hideTab">
           <el-menu :default-active="$route.path" active-text-color="#1890ff" mode="horizontal" :router="true"
                    class="nav">
             <el-menu-item index="/home">首页</el-menu-item>
