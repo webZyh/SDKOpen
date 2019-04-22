@@ -96,10 +96,10 @@ export default{
               //将用户信息存入vuex中,并存入localStorage中
               this.$store.dispatch('userInfo',userInfo.username);
 
-              //设置localStorage过期时间
+              /*//设置localStorage过期时间
               let curTime = new Date().getTime();
               //console.log(curTime);
-              localStorage.setItem('userInfo', JSON.stringify({value:userInfo.username,time:curTime}));
+              localStorage.setItem('userInfo', JSON.stringify({value:userInfo.username,time:curTime}));*/
 
               this.$message({
                 message:`${rs.msg}`,

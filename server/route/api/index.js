@@ -76,7 +76,7 @@ module.exports = function () {
                     })
 
                     res.cookie("username",data[0].username,{
-                        //此cookie存储目的是提供检查登录状态的接口
+                        //存储此cookie目的是 提供检查登录状态 的接口
                         path: '/',
                         maxAge: 1000 * 60 * 60,
                         signed: false   //加签名后，检查登录接口获取不到值

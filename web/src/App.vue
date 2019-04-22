@@ -17,15 +17,15 @@
   export default {
     name: 'App',
     mounted(){
-      //this.getUserInfo();
+      this.getUserInfo();
       //this.$store.dispatch('getUserInfo');
 
-      this.initLocalStorage()
+      //this.initLocalStorage()
     },
     methods:{
-      //...mapActions(['getUserInfo'])
+      ...mapActions(['getUserInfo'])
 
-      //设置localStorage过期时间
+      /*//设置localStorage过期时间
       initLocalStorage(){
         let newTime = new Date().getTime()
         console.log(newTime);
@@ -33,7 +33,7 @@
 
         //let obj = libs.getLocalStorage("userInfo")
         //console.log(obj);
-      }
+      }*/
     },
     components:{
       Header,

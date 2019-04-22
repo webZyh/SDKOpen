@@ -11,6 +11,28 @@
       <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
     </div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
+    <div>我是首页的内容</div>
   </div>
 </template>
 <script>
@@ -70,6 +92,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 .home
   padding-top 5px
+  padding-bottom 70px
   img
     width 100%
 </style>

@@ -81,14 +81,13 @@
           if (rs.code == 0) {
             this.fullscreenLoading = false;
             //清空localStorage
-            localStorage.removeItem('userInfo');
+            //localStorage.removeItem('userInfo');
             //清空vuex中的username，使header组件刷新
             this.$store.commit('user_info','');
 
             this.$router.push({
               path: '/login'
             })
-            //window.location.reload();   //刷新页面
           }
         })
       }
