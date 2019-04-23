@@ -1,5 +1,10 @@
-export const m = {
-  homePage:'首页',
+module.exports = {
+  hello:'您好',
+  user:{
+    login:'登录',
+    register:'注册',
+    logout:'退出登录'
+  },
   headerMenu:{
     homePage:'首页',
     doc:'文档',

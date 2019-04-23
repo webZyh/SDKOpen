@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import i18n from './lang'
+
 import axios from 'axios'
 import qs from 'qs'
 Vue.prototype.$axios = axios;  //全局注册

@@ -12,36 +12,36 @@
         <el-row type="flex" justify="end" class="right-menu">
           <LangSelect class="right-menu-item hover-effect" />
           <div v-if="!username">
-            <router-link to="/login" class="login" v-show="!$route.meta.hideLogin">登录</router-link>
-            <router-link to="/register" class="register" v-show="!$route.meta.hideRegister">注册</router-link>
+            <router-link to="/login" class="login" v-show="!$route.meta.hideLogin">{{$t("user.login")}}</router-link>
+            <router-link to="/register" class="register" v-show="!$route.meta.hideRegister">{{$t("user.register")}}</router-link>
           </div>
           <el-dropdown class="welcome-container" trigger="click" v-else>
             <div class="welcome-wrap">
-              <div class="welcome">您好，{{username}}！</div>
+              <div class="welcome">{{$t("hello")}}，{{username}}！</div>
               <i class="el-icon-caret-bottom"/>
             </div>
             <el-dropdown-menu slot="dropdown">
               <router-link to="/home">
-                <el-dropdown-item>首页</el-dropdown-item>
+                <el-dropdown-item>{{ $t("headerMenu.homePage") }}</el-dropdown-item>
               </router-link>
               <router-link to="/developDoc">
-                <el-dropdown-item>文档</el-dropdown-item>
+                <el-dropdown-item>{{ $t("headerMenu.doc") }}</el-dropdown-item>
               </router-link>
               <router-link to="/table">
-                <el-dropdown-item>表格</el-dropdown-item>
+                <el-dropdown-item>{{ $t("headerMenu.table") }}</el-dropdown-item>
               </router-link>
               <router-link to="/myChart">
-                <el-dropdown-item>图表</el-dropdown-item>
+                <el-dropdown-item>{{ $t("headerMenu.chart") }}</el-dropdown-item>
               </router-link>
               <router-link to="/manageCenter">
-                <el-dropdown-item>管理中心</el-dropdown-item>
+                <el-dropdown-item>{{ $t("headerMenu.manageCenter") }}</el-dropdown-item>
               </router-link>
               <el-dropdown-item divided>
                 <span @click="logout"
                   element-loading-spinner="el-icon-loading"
                   element-loading-background="rgba(0, 0, 0, 0.7)"
                   v-loading.fullscreen.lock="fullscreenLoading"
-                >退出登录</span>
+                >{{$t("user.logout")}}</span>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -50,12 +50,12 @@
         <el-row type="flex" justify="end" v-show="!$route.meta.hideTab">
           <el-menu :default-active="$route.path" active-text-color="#1890ff" mode="horizontal" :router="true"
                    class="nav">
-            <el-menu-item index="/home">{{ $t("m.homePage") }}</el-menu-item>
+            <el-menu-item index="/home">{{ $t("headerMenu.homePage") }}</el-menu-item>
             <!--<el-menu-item index="/downSdk">SDK引用</el-menu-item >-->
-            <el-menu-item index="/developDoc">文档</el-menu-item>
-            <el-menu-item index="/table">表格</el-menu-item>
-            <el-menu-item index="/myChart">图表</el-menu-item>
-            <el-menu-item index="/manageCenter">管理中心</el-menu-item>
+            <el-menu-item index="/developDoc">{{$t("headerMenu.doc")}}</el-menu-item>
+            <el-menu-item index="/table">{{$t("headerMenu.table")}}</el-menu-item>
+            <el-menu-item index="/myChart">{{$t("headerMenu.chart")}}</el-menu-item>
+            <el-menu-item index="/manageCenter">{{$t("headerMenu.manageCenter")}}</el-menu-item>
             <!--<el-menu-item index="/login">登录</el-menu-item >
             <el-menu-item index="/register">注册</el-menu-item >-->
           </el-menu>

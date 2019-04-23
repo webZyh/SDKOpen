@@ -35,7 +35,12 @@ const common = {
           commit('bannerData',{bannerImgs})
         }
       })
-    }
+    },
+
+    //设置语言
+    setLanguage({ commit }, language) {
+      //commit('SET_LANGUAGE', language)
+    },
   },
   mutations:{
     //存储用户信息
