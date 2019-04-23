@@ -1,6 +1,25 @@
 <template>
     <div class="">
-      <div class="search-box"></div>
+      <el-row class="search-box" type="flex">
+        <template>
+          <el-select
+            v-model="value"
+            multiple
+            filterable
+            remote
+            reserve-keyword
+            placeholder="请输入关键词"
+            :remote-method="remoteMethod"
+            :loading="loading">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </template>
+      </el-row>
       <div class="developDoc-wrap">
         <div class="menu-wrapper">
           <ul class="developDoc-menu">
@@ -39,12 +58,38 @@
     export default {
       data(){
         return{
-          data:[]
+          data:[],
+
+          options: [],
+          value: [],
+          list: [],
+          loading: false,
+          states: ["Alabama", "Alaska", "Arizona",
+            "Arkansas", "California", "Colorado",
+            "Connecticut", "Delaware", "Florida",
+            "Georgia", "Hawaii", "Idaho", "Illinois",
+            "Indiana", "Iowa", "Kansas", "Kentucky",
+            "Louisiana", "Maine", "Maryland",
+            "Massachusetts", "Michigan", "Minnesota",
+            "Mississippi", "Missouri", "Montana",
+            "Nebraska", "Nevada", "New Hampshire",
+            "New Jersey", "New Mexico", "New York",
+            "North Carolina", "North Dakota", "Ohio",
+            "Oklahoma", "Oregon", "Pennsylvania",
+            "Rhode Island", "South Carolina",
+            "South Dakota", "Tennessee", "Texas",
+            "Utah", "Vermont", "Virginia",
+            "Washington", "West Virginia", "Wisconsin",
+            "Wyoming"]
         }
       },
       mounted(){
         this.initDocData();
         this.initContScroll();
+
+        this.list = this.states.map(item => {
+          return { value: item, label: item };
+        });
       },
       methods: {
         initDocData(){
@@ -82,6 +127,21 @@
               mouseWheel: true,
             })
           })
+        },
+
+        remoteMethod(query) {
+          if (query !== '') {
+            this.loading = true;
+            setTimeout(() => {
+              this.loading = false;
+              this.options = this.list.filter(item => {
+                return item.label.toLowerCase()
+                  .indexOf(query.toLowerCase()) > -1;
+              });
+            }, 200);
+          } else {
+            this.options = [];
+          }
         }
       }
     }
@@ -91,7 +151,7 @@
 .developDoc-wrap
   display flex
   position absolute
-  top 110px
+  top 160px
   bottom 67px
   padding 0 20px
   overflow hidden

@@ -34,6 +34,19 @@ const router =  new Router({
         hideTab: true
       }
     },
+    //表格
+    {
+      path:'/table',
+      name:'table',
+      component: resolve => require(['views/Table/Table.vue'],resolve),
+    },
+
+    //图表
+    {
+      path:'/myChart',
+      name:'myChart',
+      component: resolve => require(['views/Chart/Chart.vue'],resolve),
+    },
     {
       path: '/developDoc',
       name:'developDoc',

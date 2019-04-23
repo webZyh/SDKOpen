@@ -9,7 +9,8 @@
         </div>
       </el-col>
       <el-col :span="12" class="right-wrap">
-        <el-row type="flex" justify="end" class="login-group">
+        <el-row type="flex" justify="end" class="right-menu">
+          <LangSelect class="right-menu-item hover-effect" />
           <div v-if="!username">
             <router-link to="/login" class="login" v-show="!$route.meta.hideLogin">登录</router-link>
             <router-link to="/register" class="register" v-show="!$route.meta.hideRegister">注册</router-link>
@@ -25,6 +26,12 @@
               </router-link>
               <router-link to="/developDoc">
                 <el-dropdown-item>文档</el-dropdown-item>
+              </router-link>
+              <router-link to="/table">
+                <el-dropdown-item>表格</el-dropdown-item>
+              </router-link>
+              <router-link to="/myChart">
+                <el-dropdown-item>图表</el-dropdown-item>
               </router-link>
               <router-link to="/manageCenter">
                 <el-dropdown-item>管理中心</el-dropdown-item>
@@ -43,9 +50,11 @@
         <el-row type="flex" justify="end" v-show="!$route.meta.hideTab">
           <el-menu :default-active="$route.path" active-text-color="#1890ff" mode="horizontal" :router="true"
                    class="nav">
-            <el-menu-item index="/home">首页</el-menu-item>
+            <el-menu-item index="/home">{{ $t("m.homePage") }}</el-menu-item>
             <!--<el-menu-item index="/downSdk">SDK引用</el-menu-item >-->
             <el-menu-item index="/developDoc">文档</el-menu-item>
+            <el-menu-item index="/table">表格</el-menu-item>
+            <el-menu-item index="/myChart">图表</el-menu-item>
             <el-menu-item index="/manageCenter">管理中心</el-menu-item>
             <!--<el-menu-item index="/login">登录</el-menu-item >
             <el-menu-item index="/register">注册</el-menu-item >-->
@@ -57,8 +66,8 @@
   </div>
 </template>
 <script>
+  import LangSelect from '../components/LangSelect/LangSelect.vue'
   import {mapState} from 'vuex'
-
   export default {
     data() {
       return {
@@ -91,6 +100,9 @@
           }
         })
       }
+    },
+    components:{
+      LangSelect
     }
   }
 </script>
@@ -105,10 +117,22 @@
         height 50px
     .right-wrap
       padding-top 10px
-      .login-group
+      .right-menu
         font-size 16px
         font-weight 400
         padding-right 40px
+        .right-menu-item
+          display inline-block
+          padding 0 15px
+          height 100%
+          font-size: 18px
+          color #5a5e66
+          vertical-align text-bottom
+          &.hover-effect
+            cursor pointer
+            transition background .3s
+            &:hover
+              background: rgba(0, 0, 0, .025)
         .login, .register
           /*text-decoration underline*/
           color blue
@@ -134,8 +158,6 @@
         margin-top 10px
         margin-right 20px
         .el-menu-item
-          line-height 48px;
+          line-height 48px
           height 100%
-
-
 </style>

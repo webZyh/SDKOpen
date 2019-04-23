@@ -1,6 +1,8 @@
 <template>
     <div class="main">
-      <SideBar></SideBar>
+      <div class="side-bar">
+        <SideBar></SideBar>
+      </div>
       <div class="main-content" :class="{contentCollapse:isCollapse}">
         <router-view></router-view>
       </div>
@@ -26,10 +28,12 @@ export default {
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-.main-content
-  padding-left 200px
-  transition all 0.5s
-  &.contentCollapse
-    padding-left 60px
+.main
+  .side-bar
+    width 220px
+  .main-content
+    padding-left 220px
     transition all 0.5s
+    &.contentCollapse
+      padding-left 60px
 </style>
