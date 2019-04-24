@@ -79,6 +79,17 @@
             return this.$store.getters.gettersName
         }
 
+      ********************
+      子模块中设置了  namespaced: true,
+      用以区分不同的子模块，调用子模块里的东西需要带上子模块的名字,如：this.$store.dispatch("common/getBannerData")
+      ********************
+
+      vuex modules查找规则，例如提交一个action
+      如果子模块中 没有设置 namespaced: true, 先在最外面的action中查找，没找到 再去子模块中的action中查找
+      如果子模块中 设置了   namespaced: true, 最外面的直接调用，如果外面没有，在子模块中需要加上子模块的名字调用this.$store.dispatch("common/getBannerData")，否则会报错
+      
+      ********************
+
 3、axios
 ------------------------------------
 axios.get('接口地址',{

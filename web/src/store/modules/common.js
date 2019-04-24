@@ -1,14 +1,19 @@
 import axios from 'axios'
 import libs from '../../../libs'
+import Cookies from 'js-cookie'
+import {getLanguage} from '../../lang'
+
 const common = {
   state:{
-    username: libs.getLocalStorage("userInfo") || '',
-    //username: '',
+    // username: libs.getLocalStorage("userInfo") || '',
+    username: '',
     isCollapse: false,
     bannerImgs: [],
+    // language: getLanguage()
+    language: Cookies.get('language')
   },
   getters:{
-
+    language: state => state.language,
   },
   actions:{
     //同步获取用户数据
@@ -39,7 +44,7 @@ const common = {
 
     //设置语言
     setLanguage({ commit }, language) {
-      //commit('SET_LANGUAGE', language)
+      commit('SET_LANGUAGE', language)
     },
   },
   mutations:{
@@ -53,6 +58,12 @@ const common = {
     //banner数据
     bannerData(state,{bannerImgs}){
       state.bannerImgs = bannerImgs;
+    },
+
+    //设置语言
+    SET_LANGUAGE:(state,language)=>{
+      state.language = language;
+      Cookies.set('language',language)
     }
   }
 }

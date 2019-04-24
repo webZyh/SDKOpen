@@ -25,7 +25,7 @@ export default {
     handleSetLanguage(lang) {
       console.log(lang);
       this.$i18n.locale = lang;
-      this.$store.dispatch('setLanguage', lang)
+      this.$store.dispatch('setLanguage', lang);
       this.$message({
         message: 'Switch Language Success',
         type: 'success'

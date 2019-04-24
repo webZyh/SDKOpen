@@ -1,9 +1,11 @@
 export default {
+  namespaced: true,
   state:{
-    test:'demo'
+    test:'demo',
+    // language:'demo'
   },
   getters:{
-
+    // language: state => state.language,
   },
   actions:{
 
