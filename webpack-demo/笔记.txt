@@ -1,0 +1,163 @@
+-------------------------------------
+工具---管理复杂项目
+
+脚手架工具使用webpack为底层代码的构建
+
+前端工程化，扩充前端开发视野
+
+1、彻底学会Webpack的配置
+2、理解webpack的作用及原理
+3、上手项目的打包过程配置
+4、拥有工程化的前端思维
+5、步入高级前端工程师行列
+
+-------------------------------------
+npx webpack xxx.js  	打包xxx文件
+
+module bundles	模块打包工具
+打包js、css、png、jpg
+
+ES Module模块
+	引入方式	import xx from ''		import './xxx.css'
+	导出方式： export default xx
+CommonJs模块引入		
+	const x = require('')	导出方式：	module.exports = xx
+CMD
+AMD
+-------------------------------------
+搭建Webpack环境
+
+安装比较新的node版本 可以增加webpack的打包速度
+node -v	打印版本号
+npm -v	
+
+npm init -y		跳过提示初始化package.json
+
+------------
+安装webpack
+-----
+全局安装（不好）
+npm install webpack webpack-cli -g	
+webpack -v	查找全局的webpack版本号
+
+npm uninstall webpack webpack-cli -g	全局删除
+-----
+项目内安装
+npm install webpack webpack-cli --save-dev
+--save-dev === -D
+
+npx webpack -v	查找当前项目的webpack版本号
+
+npm info webpack 查看webpack的历史版本号
+
+npm install webpack@4.16.5 -D 安装具体的版本
+
+-------------------------------------
+webpack的配置文件 	webpack.config.js
+
+
+const path = require('path')
+module.exports={
+	mode:'development',		打包模式，决定webpack法人优化级别，三种模式
+		development：不启用压缩
+		production：启用压缩，默认模式
+		none:不优化
+	entry:	'./src/index.js'	//入口，单入口-SPA;
+		{
+			main:'./src/index.js'		//上面为简写
+		},
+		{			//多入口-MPA
+			index：'./src/index.js'
+			news：'......'
+		},		
+	output:{		//输出
+		path: path.resolve(__dirname,'dist')	//路径目录(必须要绝对路径),当前目录的dist目录, __dirname:表示当前路径	
+		filename:'[name].bundle.min.js'	输出到哪个文件中
+	}
+}
+
+使用 npx webpack 命令打包
+
+npx webpack --config webpackconfig.js 	以config.js(自定义文件)这个文件为配置文件打包
+
+在package.json中配置打包命令 
+"scripts": {
+	"bundle":"webpack"
+},
+npx webpack   -->	npm run bundle
+
+webpack-cli		使能在命令行运行webpack命令
+
+--------------------
+打包打印内容
+$ npx webpack
+Hash: ed86fd323555e62d0cd4
+Version: webpack 4.30.0
+Time: 273ms
+Built at: 2019-04-25 15:02:21
+    Asset       Size  Chunks             Chunk Names
+bundle.js  930 bytes       0  [emitted]  main
+Entrypoint main = bundle.js
+[0] ./src/index.js 10 bytes {0} [built]
+
+WARNING in configuration		//没有指定打包的模式
+The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/
+-------------------
+
+--------------------------------------------------------------------------
+第三章：Loader
+-------------------
+webpack是什么
+模块打包工具	模块：js、css、png、jpg、svg、txt、excel等文件
+-------------
+
+3.1、Loader是什么？
+	webpack只能识别.js模块的打包
+	Loader告诉webpack其他的模块应该怎么打包
+
+使用每个loader需要先安装
+npm install file-loader -D
+-------------
+3.2、Loader打包静态资源（图片）
+
+https://www.webpackjs.com/loaders/
+
+file-loader
+url-loader	
+
+3.3、Loader打包静态资源（样式篇）
+****************
+loader的执行顺序是从下往上，从右往左的
+****************
+
+css文件
+style-loader	得到css-loader合并的文件后，将其挂载到<head><style></style></head>中
+css-loader 		分析几个css文件的关系，合并成一个css文件
+需要配合使用
+
+sass/less文件
+sass-loader
+需要同时安装node-sass
+
+自动添加浏览器前缀	-webkit-transform: translate(100px,100px)
+postcss-loader
+需要新增一个配置文件 postcss.config.js
+
+module.exports = {
+	plugins:[
+		require('autoprefixer')	//需要安装autoprefixer
+	]
+}
+
+3.4、
+> 模块化打包css:设置'style-loader'的
+options:{
+	modules: true,	//
+}
+> Loader打包静态资源（字体文件）
+www.iconfont.cn 		
+
+flie-loader
+
+3.5、
