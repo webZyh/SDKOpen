@@ -160,4 +160,7 @@ www.iconfont.cn
 
 flie-loader
 
-3.5、
+3.5、使用plugins让打包更便捷
+
+html-webpack-plugin
+会在打包结束后自动生成一个html文件，并把打包生成的js自动引入到这个html中

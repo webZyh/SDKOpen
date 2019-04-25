@@ -7,6 +7,7 @@ module.exports = {
 		filename:'bundle.js',
 		path: path.resolve(__dirname,'dist')
 	},
+	plugins:[],
 	module:{	//配置其他模块的打包
 		rules:[
 		{
