@@ -14,7 +14,7 @@
 -------------------------------------
 npx webpack xxx.js  	打包xxx文件
 
-module bundles	模块打包工具
+webpack 是一个 module bundles（模块打包工具）
 打包js、css、png、jpg
 
 ES Module模块
@@ -72,7 +72,7 @@ module.exports={
 		},		
 	output:{		//输出
 		path: path.resolve(__dirname,'dist')	//路径目录(必须要绝对路径),当前目录的dist目录, __dirname:表示当前路径	
-		filename:'[name].bundle.min.js'	输出到哪个文件中
+		filename:'[name].bundle.min.js'	 //[name]:对应entry中的key值
 	}
 }
 
@@ -137,24 +137,24 @@ css-loader 		分析几个css文件的关系，合并成一个css文件
 需要配合使用
 
 sass/less文件
-sass-loader
-需要同时安装node-sass
+sass-loader,需要同时安装node-sass
 
-自动添加浏览器前缀	-webkit-transform: translate(100px,100px)
+
 postcss-loader
+自动添加浏览器前缀	-webkit-transform: translate(100px,100px)
 需要新增一个配置文件 postcss.config.js
 
 module.exports = {
 	plugins:[
-		require('autoprefixer')	//需要安装autoprefixer
+		require('autoprefixer')	//需要安装autoprefixer插件
 	]
 }
 
 3.4、
 > 模块化打包css:设置'style-loader'的
-options:{
-	modules: true,	//
-}
+	options:{
+		modules: true,	//可以使用某个特定css文件中的样式
+	}
 > Loader打包静态资源（字体文件）
 www.iconfont.cn 		
 
@@ -164,3 +164,140 @@ flie-loader
 
 html-webpack-plugin
 会在打包结束后自动生成一个html文件，并把打包生成的js自动引入到这个html中
+可以配置一个模板
+plugins:[new HtmlWebpackPlugin({
+	template: 'src/index.html'	//以该文件为模板
+})],
+
+clean-webpack-plugin
+每次打包时清空之前的打包的文件
+plugins:[
+	new HtmlWebpackPlugin({
+		template: 'src/index.html'	//以该文件为模板
+	}),
+	new CleanWebpackPlugin(['dist'])	//删除dist目录  
+]
+
+**********
+2019-04-25
+********************
+
+3.6、entry	output相关配置
+
+3.7、sourceMap	查找错误源码的位置
+
+3.8、使用WebpackDevServer提升开发效率
+
+修改代码后，自动打包
+1、配置package.json ,使用--watch
+"scripts": {
+	"watch":"webpack --watch"
+},
+
+2、使用WebpackDevServer,开启一个http服务器localhost:8080，自动刷新浏览器
+需要安装webpack-dev-server
+配置webpack.config.js
+devserver:{
+	contentBase: './dist',		
+	open: true   //启动webpackDevServer时，自动打开浏览器
+}	
+
+配置package.json 
+"scripts": {
+	"watch":"webpack --watch",
+	"start":"webpack-dev-server"	**使用此命令不会在本地生成dist目录，而是打包放在内存中
+},
+
+3、使用node写一个自己的server	 实现自动打包
+
+配置package.json 
+"scripts": {
+	"watch":"webpack --watch",
+	"start":"webpack-dev-server",
+	"middleware":"node server.js"
+},
+
+const express = require('express')
+const webpack =require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const config = require('./webpack.config.js')
+
+//在node中使用webpack
+const complier = webpack(config)
+
+const app = express()
+
+app.use(webpackDevMiddleware(complier,{
+	publicPath: config.out.publicPath//可以不写
+}))
+
+app.listen(3000,()=>{
+	console.log('server is running')
+})
+
+3.9、Hot Module Replacement 热模块替换,简称HMR
+
+css代码实现HMR		css-loader实现了底层代码
+
+js代码实现HMR
+更新某一个js代码的改变
+需要手写下面的代码
+
+import xx from './xx.js'
+if(module.hot){
+	module.hot.accept('./xx.js',()=>{
+		xx();
+	})
+}
+
+3.10、使用Babel处理ES6语法
+
+安装babel-loader @babel/core
+安装@babel/preset-env
+
+配置：
+rules: [
+    { 
+	    test: /\.js$/, 
+	    exclude: /node_modules/, 
+	    loader: "babel-loader",
+	    options:{
+	  		"presets": ["@babel/preset-env",{ //处理es6中的const，()=>{}等语法
+	  			useBuiltIns: "usage"		
+	  		}]
+	    } 
+    }
+]
+
+polyfill	//解析ES6中的promise，map等语法
+
+安装@babel/polyfill
+引入
+import "@babel/polyfill"
+
+会把依赖的内容一起打到main.js里，配置useBuiltIns: "usage"使其不打到main.js中
+
+3.10、使用Babel处理ES6语法
+
+3.11、配置React代码的打包
+
+
+--------------------------------------------------------------------------
+第四章
+-------------------
+4.1	Tree Shaking	（webpack2.0）
+引入模块中需要用的内容
+只支持ES Module引入	--- import {xx} from './xx.js'
+
+配置：
+mode:'development'	开发环境模式
+optimization:{
+	usedExports: true
+}
+
+package.json中添加
+"sideEffects": false,	不做Tree Shaking, 防止忽略打包某些文件
+
+**********
+2019-04-26
+********************
