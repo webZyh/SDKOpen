@@ -90,7 +90,7 @@ module.exports = {
 			{ 
 			    test: /\.js$/, 
 			    exclude: /node_modules/, 
-			    loader: "babel-loader",
+			    loader: "babel-loader",		//解析es6语法
 			    /*
 			    options:{		//这个option里的内容可以放到根目录下的.babelrc配置文件中
 			  		"presets": [
