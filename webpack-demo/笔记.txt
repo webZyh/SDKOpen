@@ -1,3 +1,4 @@
+版本 4.30.0
 -------------------------------------
 工具---管理复杂项目
 
@@ -445,3 +446,186 @@ imports-loader  改变当前模块的this指向
 **********
 2019-04-27
 ********************
+
+--------------------------------------------------------------------------
+第五章
+-------------------
+业务代码打包，库代码打包
+
+library
+libraryTarget
+
+externals:{
+	lodash:{}
+}
+
+5.2、 Progressive Web Application
+
+http server 开启一个本地服务器
+
+Progressive Web Application：服务器挂掉后利用缓存使得页面还能显示
+
+workbox-wabpack-plugin
+
+利用workbox plugin实现pwa
+
+仅线上代码需要支持pwa
+
+配置webpack.prod.js
+引入workbox-wabpack-plugin插件
+
+new WorkboxPlugin.GenerateSW({
+	clientsClaim: true,
+	skipWaiting: true
+})
+
+index.js:
+if('serviceWorker' in navigator){
+	window.addEventListener('load',()=>{
+		navigator.serviveWorker.register('/service-worker').then(()=>{
+			...
+		})
+	})
+}
+
+
+5.2、TypeScript的打包配置
+微软
+规范代码
+
+打包typescript文件
+ts-loader
+还需配置一个tsconfig.json
+{
+	"compilerOption":{
+		"outDir" : "./dist",
+		"module" ："es6", 模块引入方式
+		"target" ："es5",
+		"allows": true	允许在ts中引入js模块
+	}
+
+}
+
+插件
+@type/lodash	TypeScript使用lodash时有错误语法提示
+@types/jquery
+
+import * as _ from 'lodash' 导入方法
+
+5.4	使用WebpackDevServer实现请求转发
+proxy的配置只能在devserver开发环境才有效
+devServer:{
+	proxy:{	//代理
+		//'/react/api':'http://localhost:3000',
+		secure:false,	//https时添加
+		changeOrigin: true,	//
+		'/react/api'：{
+			target: 'http://localhost:3000',
+			pathRewrite:{
+				'header.json':'demo.json'
+			}
+		}
+		
+	}	
+}
+
+5.5	WebpackDevServer解决单页面应用路由问题
+
+historyApiFallback: true
+
+5.6、5.7 EsLint在webpack中的配置
+
+EsLint：代码规范
+
+安装eslint 
+npm install eslint --save-dev
+
+配置eslint规范命令:npx eslint --init 生成.eslintrc.js文件
+
+eslint检查代码的方式：
+--------
+第一种：npx eslint src 校验src目录下的代码
+
+.eslintrc.js文件：
+module.exports={
+	"extends":'',
+	"parser":"babel-eslint",	//解析器，安装babel-eslint
+	"rules":{	//配置eslint代码规则，为0表示不遵循
+		"" : 0
+	},
+	globals:{
+		document: false //可以使用ducument全局变量
+	}
+}
+
+第二种：vscode 	安装eslint插件
+
+第三种：npm install eslint-loader
+
+配置：
+test: /\.js$/, 
+exclude: /node_modules/, 
+use:[
+	"babel-loader",
+	"eslint-loader"	//检测代码是否符合eslint
+]
+eslint-loader:会降低打包的效率
+devServer:{
+	overlay: true
+}
+
+第四种： git钩子 检测代码是否符合eslint规范，不符合禁止提交代码
+
+5.8、 提升webpack打包速度的方法
+1、跟上技术的迭代（Node，Npm，Yarn）
+2、在尽可能少的模块上应用loader
+	使用：exclude: /node_modules/
+3、plugin尽可能精简并确保可靠性
+4、resolve参数合理配置
+
+
+**********
+2019-04-28
+********************
+
+--------------------------------------------------------------------------
+第六章
+-------------------
+6.1/6.2
+编写loader
+
+6.3
+编写plugin
+
+6.4/6.5
+Bundler源码编写（模块分析）
+
+6.6
+Bundler源码编写（Dependencies Graph）
+
+6.7
+Bundler源码编写（生成代码）
+
+--------------------------------------------------------------------------
+第七章
+-------------------
+7.3 Vue Cli3
+
+
+
+----------------------------------------------------------------
+npm install -g vue-cli
+全局安装路径C:\Users\用户名\AppData\Roaming\npm\node_modules\vue-cli
+使用vue -V查看vue-cli版本
+
+vue-cli的作用，创建一个vue的项目模板，并帮你完成了webpack对项目的打包配置
+
+----------------------------------------
+vue-cli2.0	
+创建项目：vue init webpack my-project
+
+vue-cli3.0	正式版2018-08-10
+创建项目：vue create my-project
+
+----------------------------------------------------------------
+学习webpack总结：

@@ -26,6 +26,9 @@ module.exports = {
 
 	],
 	optimization:{
+		runtimeChunk:{
+			name: 'runtime'
+		},
 		splitChunks:{		//SplitChunksPlugin实现代码分割
 			chunks:'all',
 			minSize: 30000,
@@ -73,6 +76,7 @@ module.exports = {
 			{ 
 			    test: /\.js$/, 
 			    exclude: /node_modules/, 
+			    // include: path.resolve(__dirname,'../src'),
 			    // loader: "babel-loader",
 			    use:[
 			    	{

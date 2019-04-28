@@ -1,4 +1,4 @@
-console.log(this === window)
+// console.log(this === window)
 
 //import './style.css'
 
@@ -6,7 +6,7 @@ console.log(this === window)
 $('body').css('background','pink')*/
 //异步 访问不到lodash内部的方法
 /*async function getComponent(){
-	const { _ } = await import('lodash');
+	const { default: _ } = await import('lodash');
 
 	let element = document.createElement('div');
 	element.innerHTML = _.join(['dd','aa'],'-')
@@ -20,16 +20,16 @@ document.addEventListener('click',()=>{
 	})
 })*/
 /*function getComponent(){
-	return import('lodash').then((_)=>{
-		let element = document.createElement('div');
+	return import('lodash').then(({ default: _ })=>{
+		const element = document.createElement('div');
 		element.innerHTML = _.join(['dd','aa'],'-')
 		return element;
 	})
 }
 
 document.addEventListener('click',()=>{
-	getComponent().then((element)=>{
-		return document.body.appendChild(element);
+	getComponent().then(element=>{
+		document.body.appendChild(element);
 	})
 })*/
 

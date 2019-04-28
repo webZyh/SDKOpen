@@ -12,6 +12,9 @@ module.exports = {
 		filename:'[name].js',
 		path: path.resolve(__dirname,'dist'),	//__dirname:当前路径
 		//publicPath:'/'	//给引用的js文件加上一个前缀
+		
+		//libraryTarget:'umd',	//打包库的配置，可以支持多种语法引入
+		//library: 'library',		//给使用者一个全局变量library
 	},
 	devServer:{
 		contentBase: './dist',		//在哪个目录启动服务器
