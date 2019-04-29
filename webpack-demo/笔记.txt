@@ -170,6 +170,8 @@ plugins:[new HtmlWebpackPlugin({
 	template: 'src/index.html'	//以该文件为模板
 })],
 
+如果你有多个 webpack 入口点， 他们都会在生成的HTML文件中的 script 标签内
+
 clean-webpack-plugin
 每次打包时清空之前的打包的文件
 plugins:[
