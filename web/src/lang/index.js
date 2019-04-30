@@ -27,7 +27,7 @@ const messages = {
 
 const i18n = new VueI18n({
   // locale: getLanguage(),       //可以将从cookie中取得language封装成一个方法，
-  locale: Cookies.get('language'),
+  locale: Cookies.get('language')||'zh',
   messages
 })
 

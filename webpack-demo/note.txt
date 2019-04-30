@@ -631,3 +631,8 @@ vue-cli3.0	正式版2018-08-10
 
 ----------------------------------------------------------------
 学习webpack总结：
+webpack,很早就听说的一个技术，但是不知道有什么用，用html/css/jquery写MPA项目的时候，感觉根本就不需要这个技术。用vue写SPA项目，使用vue-cli下载一个vue项目的模板，在模板中就可以直接写自己的vue代码，使用npm run dev就可以在本地运行起来,也知道可以使用npm run build命令，可以生成一个dist文件夹给后台部署上线，也是完全就不需要webpack啊。
+那么webpack到底有什么用呢，看一下webpack官网首页，它对自己的介绍是：打包一起的图片、样式表、脚本、资源；总结一下，webpack是打包用的，那为什要打包呢？就像我上面说的，没有webpack也可以写vue的项目，写react的项目
+真正的了解了webpack后，为自己的无知感到叹息，不过少知而迷、不知而盲，学无止境啊；下面就说说原因：原来我们写vue项目时，就已经使用了webpack了，纳尼？我并没有用过啊，时这样的，在使用vue-cli创建vue项目模板时，vue-cli这个脚手架就已经为我们的vue项目配置好webpack了，所以我们使用的npm run dev、npm run build这些命令，就是webpack提供的；我们可以看到vue项目有个build文件夹，里面放置的就是webpack的配置文件，（这里说的vue-cli版本是2.9.6）webpack.dev.conf.js是开发环境配置，webpack.prod.conf.js是生产环境配置，webpack.base.conf.js是二者公共部分的提取；在package.json中可以看到webpack打包命令的配置，npm run dev就是这里配置的，此时，我们已经知道vue项目模板的底层是封装了webpack的配置的，但还是不知道webpack是做什么的，没关系，继续...
+继续以vue模板为例，在webpack配置中有个entry: {app: './src/main.js'},就是指webpack以vue项目中src目录中的main.js为入口，打包main.js中的内容，将其中所有的内容打包到一个app.js中，供页面调用；我们知道，vue代码、sass、less、es6代码浏览器是不认的，此时打包好的app.js是解析过的代码，浏览器就可以使用了，再往下细说：
+我们看main.js的代码，它使用了import这个es6的引用语法，webpack就可以实现这种语法的解析，将这种语法翻译成浏览器可以使用的语法；webpack起初是只能解析js代码；对于其他的语法，webpack是使用loader来解析的，需要我们在配置文件中添加对应的loader；例如：解析vue就使用vue-loader，解析css使用style-loader、css-loader,解析js的es6语法使用babel-loader,解析sass、less使用sass-loader（需要安装node-sass），解析字体文件使用file-loader,解析jpg/png等图片文件使用url-loader,当然还有很多；除了这些loader以外，我们还需要根据需要配置依赖。webpack中还有很多的loader和plugin，可以处理各种各样的问题。这篇文章主要是解释webpack是什么，就不继续深入，webpack要学习的东西很多，大家加油！
