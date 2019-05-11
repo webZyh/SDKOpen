@@ -1,0 +1,8 @@
+安装 同步插件"Settings Sync" 
+
+tokens：7580c61bc4442105e1470bb9f1926fc018c1e136
+GIST ID : 86f9bb91c469c5662b032c04d25fecaa
+
+
+(Sync: Update / Uplaod Settings) Shift + Alt + U 在弹窗里输入你的token， 回车后会生成syncSummary.txt文件
+(Sync: Download  Settings) Shift + Alt + D 在弹窗里输入你的gist值，稍后片刻便可同步成功
