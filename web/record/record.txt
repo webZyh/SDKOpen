@@ -140,3 +140,32 @@ npm install qs --save
 import qs from 'qs'
 ...
 let postData=this.$qs.stringify(datas)
+
+5、$route.matched
+数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。
+包含两项：
+matched[0]: 父路由
+matched[1]: 当前路由
+
+6、el-menu菜单有子路由时也高亮显示
+
+:default-active="activeMenu"
+
+computed: {
+  activeMenu() {
+    const route = this.$route;
+    const { meta, path } = route;
+    if (meta.activeMenu) {
+      return meta.activeMenu
+    }
+    return path;
+  },
+},
+在对应的子路由组件中设置
+meta：{
+  activeMenu：activePath
+}
+activePath就设置成当前菜单高亮显示的路由即可
+
+7、子路由配置
+children里面的path不要加 / ，加了就表示是根目录下的路由。
