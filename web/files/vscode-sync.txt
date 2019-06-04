@@ -1,8 +1,10 @@
-°²×° Í¬²½²å¼ş"Settings Sync" 
+å®‰è£… åŒæ­¥æ’ä»¶"Settings Sync" 
 
-tokens£º7580c61bc4442105e1470bb9f1926fc018c1e136
+tokensï¼šb91684d823a4caf8856530f4f1bd22af0b4073ee
 GIST ID : 86f9bb91c469c5662b032c04d25fecaa
 
 
-(Sync: Update / Uplaod Settings) Shift + Alt + U ÔÚµ¯´°ÀïÊäÈëÄãµÄtoken£¬ »Ø³µºó»áÉú³ÉsyncSummary.txtÎÄ¼ş
-(Sync: Download  Settings) Shift + Alt + D ÔÚµ¯´°ÀïÊäÈëÄãµÄgistÖµ£¬ÉÔºóÆ¬¿Ì±ã¿ÉÍ¬²½³É¹¦
+(Sync: Update / Uplaod Settings) Shift + Alt + U åœ¨å¼¹çª—é‡Œè¾“å…¥ä½ çš„tokenï¼Œ å›è½¦åä¼šç”ŸæˆsyncSummary.txtæ–‡ä»¶
+(Sync: Download  Settings) Shift + Alt + D åœ¨å¼¹çª—é‡Œè¾“å…¥ä½ çš„gistå€¼ï¼Œç¨åç‰‡åˆ»ä¾¿å¯åŒæ­¥æˆåŠŸ
+
+è¾“å…¥ctrl+shift+p è¾“å…¥ Sync è¿›è¡Œç›¸å…³æ“ä½œ
