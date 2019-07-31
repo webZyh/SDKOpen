@@ -47,6 +47,12 @@ const router =  new Router({
       name:'myChart',
       component: resolve => require(['views/Chart/Chart.vue'],resolve),
     },
+    // 富文本编辑器
+    {
+      path:'/richText',
+      name:'richText',
+      component: resolve => require(['views/RichText/RichText.vue'],resolve),
+    },
     {
       path: '/developDoc',
       name:'developDoc',

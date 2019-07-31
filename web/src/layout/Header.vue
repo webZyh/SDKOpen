@@ -55,6 +55,7 @@
             <el-menu-item index="/developDoc">{{$t("headerMenu.doc")}}</el-menu-item>
             <el-menu-item index="/table">{{$t("headerMenu.table")}}</el-menu-item>
             <el-menu-item index="/myChart">{{$t("headerMenu.chart")}}</el-menu-item>
+            <el-menu-item index="/richText">{{$t("headerMenu.richText")}}</el-menu-item>
             <el-menu-item index="/manageCenter">{{$t("headerMenu.manageCenter")}}</el-menu-item>
             <!--<el-menu-item index="/login">登录</el-menu-item >
             <el-menu-item index="/register">注册</el-menu-item >-->

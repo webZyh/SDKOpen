@@ -10,7 +10,8 @@ module.exports = {
     doc:'doc',
     table:'table',
     chart:'chart',
-    manageCenter:'manageCenter'
+    richText:'RichText',
+    manageCenter:'manageCenter',
   }
 }
 

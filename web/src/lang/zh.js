@@ -10,6 +10,7 @@ module.exports = {
     doc:'文档',
     table:'表格',
     chart:'图表',
-    manageCenter:'管理中心'
+    richText:'编辑器',
+    manageCenter:'管理中心',
   }
 }
