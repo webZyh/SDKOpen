@@ -115,3 +115,54 @@ localStorage.setItem('userInfo', JSON.stringify({value:userInfo.username,time:cu
 > 5、不用localStorage存储用户数据，使用一个后台接口，后台可以设置用户数据过期的时间
 
 7、给el-tree添加路由
+
+------------------------------------------------------------------------------------------
+sdkOpen_client
+------------------------------------
+问题：input输入框有一个初始值，此初始值是通过后台接口保存在vuex中，只要初始值变化就显示一个修改按钮
+思路：存储一个初始值，表单内的值改变，和初始值进行比对，不相同就显示修改按钮
+实际操作
+方法1、v-model绑定使用计算属性，计算属性需要设置set和get，修改表单的内容后，初始值也会因为set改变---失败
+    AppName: {
+      get() {
+        return this.oemApplication ? this.oemApplication.appName : '';
+      },
+      set(val){
+         this.oemApplication.appName = val
+      }
+    },
+    ......
+
+方法2、将要保存的初始值设置成计算属性，直接获取后台的接口值，表单的数据使用另外一个变量，放在data中，开始时使其引用保存初始值的计算属性，此时变为undefined,取不到计算属性的值---失败
+   data(){
+      appName: this.originAppName,
+      appPackName: this.originAppPackName,
+   }
+   originAppName: {
+      get() {
+        return this.oemApplication ? this.oemApplication.appName : '';
+      }
+    },
+    originAppPackName: {
+      get() {
+        return this.oemApplication ? this.oemApplication.appPackName : '';
+      }
+    },
+方法3、将初始值设置成一个data中的变量，在初始化的方法中初始保存这个值，修改表单的内容，初始值也会改变---失败
+
+方法4、在vuex的state中新建一个变量，专门用来保存初始值，在mutation中得到后台数据后，存储该值，在页面需要时直接取出，此时修改表单的值，不会影响这个初始值---成功
+
+-------------------------------------------------
+问题：给数组和对象添加新属性后页面 DOM 不更新问题的
+  给对象动态添加一个属性控制显示隐藏  show: false
+  使用this.obj.show = false 不能动态显示在视图中
+  需要使用Vue.set(this.obj, attr, value) 的方法添加，console中会出现该属性的一对get和set方法，表示添加成功，数组和对象更新后页面 DOM 也会更新
+  ******
+  注意：如果是对象数组要添加一个属性的话，必须使用forEach循环，将新属性添加到数组的每个对象中
+  ******
+  该问题出现在：常见问题页，查找问题列表，点击某个问题显示对应的答案
+
+-------------------------------------------------
+
+问题： 配置子路由后，跳到子路由的路径，还是显示父路由的内容
+  父路由中没有使用router-view，导致子路由无法显示
