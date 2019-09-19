@@ -10,3 +10,34 @@ GIST ID : 86f9bb91c469c5662b032c04d25fecaa
 (Sync: Download  Settings) Shift + Alt + D 在弹窗里输入你的gist值，稍后片刻便可同步成功
 
 输入ctrl+shift+p 输入 Sync 进行相关操作
+
+
+{
+    "editor.fontSize": 15,
+    "editor.minimap.enabled": true,
+    "editor.renderWhitespace": "none",
+    "window.zoomLevel": 0,
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Monokai",
+    "explorer.confirmDelete": false,
+    "eslint.validate": [
+        "javascript",{
+            "language": "vue",
+            "autoFix": true
+        },
+        "html",
+        "vue"
+    ],
+    "sync.gist": "86f9bb91c469c5662b032c04d25fecaa",
+    "eslint.autoFixOnSave": true,
+    "editor.tabSize": 2,
+    "breadcrumbs.enabled": true,
+    "editor.quickSuggestionsDelay": 0,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.autoGuessEncoding": true,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "code-runner.runInTerminal": true,
+    "editor.wordWrap": "on",
+    "workbench.startupEditor": "newUntitledFile"
+}
