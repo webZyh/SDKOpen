@@ -43,6 +43,13 @@
       commit(Method,{参数})   //这一步也可以直接从component到mutations
     }
 
+    component -> mutations
+      component: this.$store.commit("MethodName", 参数);
+      mutations: 
+      MethodName（state, 参数）{
+        ...相关操作
+      }
+    
     mutations
       Method(state,{参数}){
         //操作state
